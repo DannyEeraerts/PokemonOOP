@@ -30,9 +30,15 @@
                 <ul class="col-12">
                     <li id="pokemonFavorite">test</li>
                 </ul>
-                <div class=" col text-center">
-                    <button type="submit" class="btn btn-info mb-3">Send to a friend</button>
-                </div>
+                <form class="row">
+                    <div class="form-group offset-1 col-7 ">
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-info mb-3">Send to a friend</button>
+                    </div>
+                </form>
 
 
             </section>
