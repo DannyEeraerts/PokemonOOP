@@ -51,6 +51,9 @@ li a .page-item .page-link{
   background-color: #138496 !important;
   border-color: #117a8b;
 }
+.text-muted{
+  color: lightcyan !important;
+}
 section h3{
   color: #a350ff;
   text-shadow: #000 1px 1px 0, 2px 2px 2px rgba(206,206,206,0);
@@ -77,4 +80,18 @@ footer span{
 .form-control::placeholder{
   color: white;
 
+}
+.hide {
+  display: none
+}
+
+.show {
+  display: flex !important;
+  justify-content: space-between !important;
+}
+.hide-box{
+  display: none!important;
+}
+.show-box{
+  display: flex!important;
 }
