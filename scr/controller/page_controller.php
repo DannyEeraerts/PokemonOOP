@@ -1,6 +1,6 @@
 <?php
 
-$currentPage =$_SERVER['QUERY_STRING'];
+$currentPage = $_SERVER['QUERY_STRING'];
 
 if (intval($currentPage) <= 0 || $currentPage == ""){
     $currentPage = 1;
@@ -20,14 +20,14 @@ if (intval($currentPage) <= 1 || $currentPage == "" ){
 }
 ?>
 
-<li class="page-item <?php echo $disablePreviousPage?>">
-    <a class="page-link" href="index.php?<?php echo $currentPage-1;?>">Previous Page</a>
+<!--<li class="page-item <?php /*echo $disablePreviousPage*/?>">
+    <a class="page-link" href="index.php?<?php /*echo $currentPage-1;*/?>">Previous Page</a>
 </li>
 <li class="page-item active">
-    <a class="page-link" href="index.php?<?php echo $currentPage;?>"><?php echo $currentPage;?><span class="sr-only">(current)</span></a>
+    <a class="page-link" href="index.php?<?php /*echo $currentPage;*/?>"><?php /*echo $currentPage;*/?><span class="sr-only">(current)</span></a>
 </li>
 <li class="page-item">
-    <a class="page-link" href="index.php?<?php echo $currentPage+1;?>">Next Page</a>
-</li>
+    <a class="page-link" href="index.php?<?php /*echo $currentPage+1;*/?>">Next Page</a>
+</li>-->
 
 

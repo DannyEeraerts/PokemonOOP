@@ -2,6 +2,7 @@
 
 require_once('../scr/model/classes/detail.php');
 
+
 $url = "https://pokeapi.co/api/v2/pokemon/";
 
 $name =$_SERVER['QUERY_STRING'];
