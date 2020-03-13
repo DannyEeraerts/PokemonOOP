@@ -1,8 +1,8 @@
 <?php
-require_once('../scr/controller/email_input_controller.php');
-require_once ("../scr/controller/type_controller.php");
-require_once("../scr/controller/page_controller.php");
-//require_once("../scr/controller/category_controller.php");
+require_once('../src/controller/email_input_controller.php');
+require_once("../src/controller/type_controller.php");
+require_once("../src/controller/page_controller.php");
+require_once("../src/controller/category_controller.php");
 
 //var_dump($_SESSION['emailErr']);
 ?>
@@ -36,9 +36,9 @@ require_once("../scr/controller/page_controller.php");
                 }?>
             <section id ="favorites" class = "mx-0 row border border-dark mt-2 mb-3 d-none">
                 <h3 class = "col-12 pl-4 pt-2 pb-1">List of your favorite Pokemons:</h3>
-                <ul class="col-12">
-                    <li id="pokemonFavorite">test</li>
-                </ul>
+                <div class="col-12">
+                    <p id="pokemonFavorite">test</p>
+                </div>
                 <form action="#" method="POST" class="row" novalidate>
                     <div class="form-group offset-1 col-7 ">
                         <input type="email" name="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email to friend">
@@ -75,10 +75,9 @@ require_once("../scr/controller/page_controller.php");
                 ?>
             </section>
             <form action="#" method="POST">
-                <div class="form-row py-4  border border-white d-flex justify-content-space-between mx-auto">
+                <div class="form-row py-3  border border-white d-flex justify-content-space-between mx-auto">
                     <div class="col-4 px-3">
                         <select id="type" name="type" class="form-control bg-info text-white">
-                            <option selected >choose type</option>
                             <?php
                             foreach ($types as $type) {
                                 if (--$count <= 1) {
@@ -91,13 +90,15 @@ require_once("../scr/controller/page_controller.php");
                             // note: how to put this on top?
                             //require ("../scr/controller/type_controller.php");?>
                         </select>
+                        <small class="form-text text-muted text-center">Choose type</small>
                     </div>
                     <div class="col-4 px-3">
-                        <input type="number" name="limit" class="form-control bg-info text-white" value = "<?php echo (isset($_POST['limit']))?$_POST['limit']:18;?>" min = "3" max ="30"  step ="3" placeholder="Amount of Pokemons/page">
-
+                        <input type="number" name="limit" class="form-control bg-info text-white" value = "<?php echo (isset($_SESSION['limit']))?$_SESSION['limit']:18;?>" min = "3" max ="30"  step ="3" placeholder="Amount of Pokemons/page">
+                        <small class="form-text text-muted text-center">Amount of Pokemons/page</small>
                     </div>
                     <div class="col-4 px-3">
                         <button type="submit" class="btn btn-info btn-block">Submit</button>
+                        <small class="form-text text-muted text-center">Confirm your choice</small>
                     </div>
 
                 </div>
@@ -120,10 +121,29 @@ require_once("../scr/controller/page_controller.php");
                 </ul>
             </nav>
 
-            <?php
-            // note: how to put this on top?
-            require_once("../scr/controller/category_controller.php");?>
+            <div class="row">
+                <?php
 
+                foreach ($pokemons as $pokemon) {
+
+                    $pokemon_details = $pokemons_array->get_pokemon_details($pokemon->name);
+                    $pokemon_sprite = $pokemon_details->sprites->front_default;
+                    ?>
+                    <div class="col-6 col-md-4">
+                        <div class="card mb-4">
+                            <img class ="mx-auto d-block" src="<?= $pokemon_sprite ?>" class="mb-2 px-2" width="125px" alt="pokemon">
+                            <div class="card-body">
+                                <h5 class ="card-text"> <?= ucfirst($pokemon->name);?>
+                                    <i class=" ml-2 fa fa-heart-o text-danger "></i>
+                                </h5>
+                                <a href="../templates/detail.php?<?php echo $pokemon->name;?>" id="detail_button" class="btn btn-primary">More over <?= ucfirst($pokemon->name);?>?</a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                }?>
+
+            </div>
 
             <nav aria-label="Page navigation example" class= "mt-3 d-flex justify-content-center">
                 <ul class="pagination">

@@ -1,5 +1,5 @@
 <?php
-
+require_once("../src/controller/detail_controller.php");
 ?>
 <!doctype html>
 <html lang="en">
@@ -21,12 +21,32 @@
 <body class= "bg-secondary text-white">
 <div class= "container text-center">
     <h1 class=" my-3">Pokemon World</h1>
-    <?php
-    // note: how to put this on top?
-    require_once("../scr/controller/detail_controller.php");?>
-    <a class="btn btn-info mt-5" href="../Public/index.php" role="button">Back to overview</a>
+    <div class = "row border pt-2 pb-3 my-5">
+        <h2 class="col-12 text-center  " ><?=ucfirst($name)?></h2>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6 pt-md-5">
+            <img  src="<?php echo $imageFront ?>" class="mb-2 px-2" width="175px" alt="pokemon">
+            <img  src="<?php echo $imageBack ?>" class="mb-2 px-2" width="175px" alt="pokemon">
+        </div>
+        <div class="col-12 col-md-6 pt-3 pb-2 py-md-5 border">
+            <p ><span class="black">id: </span><?=$id?> </p>
+            <p> <span class="black">height:</span> <?=$height." "?>m</p>
+            <p> <span class="black">weight:</span> <?=$weight." "?>kg</p>
+            <?php foreach ($types as $type) {
+                array_push($tempArray,$type->type->name);
+            }?>
+            <p> <span class="black">type(s):</span> <?php echo implode(", ", $tempArray);?></p>
+            <?php foreach ($abilities as $ability) {
+                array_push($tempArray2,$ability->ability->name);
+            }?>
+            <p> <span class="black">abilities:</span> <?php echo implode(", ", $tempArray2);?></p>
+        </div>
+        <div class="col text-center">
+            <a class="btn btn-info mt-5 text-center" href="../Public/index.php" role="button">Back to overview</a>
+        </div>
 
-    <footer class="container fixed-lg-bottom mx-auto row d-flex align-items-center py-3 mt-5 border border-white">
+    <footer id="footer_detail_page" class="container fixed-lg-bottom mx-auto row d-flex align-items-center py-3 mt-5 border border-white">
 
         <!-- Grid column -->
         <div class="col-md-6 col-lg-5 text-center text-md-left">

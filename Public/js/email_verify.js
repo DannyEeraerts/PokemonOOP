@@ -8,11 +8,11 @@ function emailVerify() {
       emptyMessage(errorMessage);
       emailInput.value = cleanEmail(emailInput.value);
     } else {
-      errorMessage.innerHTML = "<div>Email has no valid format&nbsp;</div><div>&#x274C</div>";
+      errorMessage.innerHTML = "<div>Email has no valid format&nbsp;&#x274C</div>";
       toggleErrorMessage(errorMessage);
     }
   } else {
-    errorMessage.innerHTML = "<div>Email is required&nbsp;</div><div>&#x274C;</div>";
+    errorMessage.innerHTML = "<div>Email is required&nbsp;&#x274C;</div>";
     toggleErrorMessage(errorMessage);
   }
 }

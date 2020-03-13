@@ -6,7 +6,6 @@ h1{
   color: black;
   text-shadow: #e0e0e0 1px 1px 0, 2px 2px 2px rgba(206,206,206,0);
 }
-
 a{
   color: dimgrey;
 }
@@ -90,8 +89,18 @@ footer span{
   justify-content: space-between !important;
 }
 .hide-box{
-  display: none!important;
+  display: none !important;
 }
 .show-box{
-  display: flex!important;
+  display: flex !important;
+}
+#detail_button{
+  white-space: pre-wrap !important;
+}
+
+@media only screen and (min-width: 1024px) {
+  #footer_detail_page {
+    position: absolute;
+    bottom: 0;
+  }
 }
