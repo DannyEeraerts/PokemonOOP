@@ -1,4 +1,5 @@
 <?php
+require_once ('../src/controller/reset_controller.php');
 require_once('../src/controller/email_input_controller.php');
 require_once("../src/controller/type_controller.php");
 require_once("../src/controller/page_controller.php");
@@ -21,6 +22,7 @@ require_once('../src/model/classes/Pokemons.php');
         <meta name ="keywords" content = "Pokemon" />
         <meta name ="author" content = "Danny Eeraerts" />
         <!-- Bootstrap CSS -->
+        <link href="../public/images/favicon.ico" rel="icon" type="image/x-icon" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../public/css/stylesheet.css"
@@ -77,45 +79,45 @@ require_once('../src/model/classes/Pokemons.php');
                 ?>
             </section>
 
-                <form action="#" method="POST">
-                    <div class="form-row pt-3 pb-2 border border-white d-flex justify-content-space-between mx-auto">
-                        <div class="col-3 px-3">
-                            <select id="type" name="type" class="form-control bg-info text-white">
-                                <?php
-                                foreach ($types as $type) {
-                                    $test = $type->name;
-                                    if (--$count <= 1) {
-                                        break;
-                                    }
-                                    ?>
-                                    <option value=<?php echo $type->name;
-                                            if (isset($_SESSION['type'])){
-                                        if ($test === $_SESSION['type']) {
-                                            echo " selected";
-                                        }
-                                    }?>
-                                           >
-                                        <?php echo $type->name; ?>
-                                    </option>
-                                    <?php
+            <form action="#" method="POST">
+                <div class="form-row pt-3 pb-2 border border-white d-flex justify-content-space-between mx-auto">
+                    <div class="col-3 px-3">
+                        <select id="type" name="type" class="form-control bg-info text-white">
+                            <?php
+                            foreach ($types as $type) {
+                                $test = $type->name;
+                                if (--$count <= 1) {
+                                    break;
                                 }
                                 ?>
-                            </select>
-                            <small class="form-text text-muted text-center">Choose type</small>
-                        </div>
-                        <div class="col-3">
-                            <input type="number" name="limit" class="form-control bg-info text-white" value = "<?php echo (isset($_SESSION['limit']))?$_SESSION['limit']:18;?>" min = "3" max ="30"  step ="3" placeholder="Amount of Pokemons/page">
-                            <small class="form-text text-muted text-center">Amount of Pokemons/page</small>
-                        </div>
-                        <div class="col-3 px-3">
-                            <button type="submit" class="btn btn-info btn-block">Submit</button>
-                            <small class="form-text text-muted text-center">Confirm your choice</small>
-                        </div>
-                        <div class="col-3 px-3">
-                            <button class="btn btn-info btn-block">Reset</button>
-                            <small class="form-text text-muted text-center">Back to start values</small>
-                        </div>
-                </form>
+                                <option value=<?php echo $type->name;
+                                        if (isset($_SESSION['type'])){
+                                    if ($test === $_SESSION['type']) {
+                                        echo " selected";
+                                    }
+                                }?>
+                                ><?php echo $type->name; ?>
+                                </option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                        <small class="form-text text-muted text-center">Choose type</small>
+                    </div>
+                    <div class="col-3">
+                        <input type="number" name="limit" class="form-control bg-info text-white" value = "<?php echo (isset($_SESSION['limit']))?$_SESSION['limit']:18;?>" min = "3" max ="30"  step ="3" placeholder="Amount of Pokemons/page">
+                        <small class="form-text text-muted text-center">Amount of Pokemons/page</small>
+                    </div>
+                    <div class="col-3 px-3">
+                        <button type="submit" class="btn btn-info btn-block">Submit</button>
+                        <small class="form-text text-muted text-center">Confirm your choices</small>
+                    </div>
+                    <div class="col-3 px-3">
+                        <a href="?reset" id="resetbutton" class="btn btn-info btn-block">Reset</a>
+                        <small class="form-text text-muted text-center">Back to start values</small>
+                    </div>
+                </div>
+            </form>
 
 
 
@@ -152,7 +154,7 @@ require_once('../src/model/classes/Pokemons.php');
                                 <h5 class ="card-text"> <?= ucfirst($pokemon->name);?>
                                     <i class=" ml-2 fa fa-heart-o text-danger "></i>
                                 </h5>
-                                <a href="../templates/detail.php?<?php echo $pokemon->name;?>" id="detail_button" class="btn btn-primary">More over <?= ucfirst($pokemon->name);?>?</a>
+                                <a href="../templates/detail.php?<?php echo $pokemon->name;?>" id="detail_button" class="btn btn-primary">More about <?= ucfirst($pokemon->name);?>?</a>
                             </div>
                         </div>
                     </div>

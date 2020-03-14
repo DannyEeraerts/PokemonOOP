@@ -50,6 +50,12 @@ li a .page-item .page-link{
   background-color: #138496 !important;
   border-color: #117a8b;
 }
+#resetbutton{
+  color: #17a2b8;
+  background-color: #fff;
+  border-color: #117a8b;
+}
+
 .text-muted{
   color: lightcyan !important;
 }
