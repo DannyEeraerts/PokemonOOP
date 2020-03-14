@@ -2,10 +2,13 @@
 
 declare(strict_types=1);
 
+namespace App\Model\Classes;
 require_once('../vendor/autoload.php');
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+
+
 
 abstract class Pokemons
 {
@@ -40,7 +43,7 @@ class AllPokemons extends Pokemons{
 
 class AllTypes extends Pokemons{
 
-    public function getAllPokemonsTypes(): array
+    public function getAllPokemonsTypes() : array
     {
         try {
             $response = $this->guzzle->get("/api/v2/type");
@@ -53,7 +56,7 @@ class AllTypes extends Pokemons{
         }
     }
 
-    public function getAllPokemonsOfSpecificTypes(string $name):array
+    public function getAllPokemonsOfSpecificTypes(string $name) : array
     {
         try {
             $response = $this->guzzle->get("/api/v2/type/" . $name);
@@ -83,12 +86,19 @@ class Details extends Pokemons{
         }
     }
 
+
+
+
+
+
+
 }
 
 
 /*$AllPokemons = new AllPokemons();
 $PokemonPage = $AllPokemons->getAllPokemonsDividedInPages(0,20);
 var_dump($PokemonPage);
+
 var_dump($PokemonPage[0]->name);
 
 
@@ -108,7 +118,10 @@ while ($offset < $limit){
 };
 //var_dump($TypesPage);
 
-$PokemonDetails = new Details();
+$detail = $PokemonDetails->getPokemonDetails($name);
+*/
+
+/*$PokemonDetails = new Details();
 $name = "spearow";
 $detail = $PokemonDetails->getPokemonDetails($name);
 var_dump($detail->id);

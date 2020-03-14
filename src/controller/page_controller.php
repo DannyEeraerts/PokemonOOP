@@ -1,4 +1,5 @@
 <?php
+//
 
 $currentPage = $_SERVER['QUERY_STRING'];
 

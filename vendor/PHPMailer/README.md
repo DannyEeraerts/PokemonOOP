@@ -82,7 +82,7 @@ While installing the entire package manually or with Composer is simple, conveni
 
 ```php
 <?php
-// Import PHPMailer classes into the global namespace
+// Import PHPMailer Classes into the global namespace
 // These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;

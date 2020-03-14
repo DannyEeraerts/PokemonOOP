@@ -1,7 +1,13 @@
 <?php
 
-require_once('../src/model/classes/Pokemons.php');
+//namespace App\Controller;
 
+use App\Model\Classes\AllPokemons;
+use App\Model\Classes\AllTypes;
+
+require "../vendor/autoload.php";
+
+//require_once('../src/Model/Classes/Pokemons.php');
 
 //$url = "https://pokeapi.co/api/v2/pokemon";
 if (isset($_SESSION['currentPage'])){

@@ -1,8 +1,10 @@
 <?php
 
+//namespace App\Controller;
+
 session_start();
 
-// Import PHPMailer classes into the global namespace
+// Import PHPMailer Classes into the global namespace
 // These must be at the top of your script, not inside a function
 
 use PHPMailer\PHPMailer\PHPMailer;

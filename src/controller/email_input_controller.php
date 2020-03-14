@@ -1,4 +1,7 @@
 <?php
+
+//namespace App\Controller;
+
 $emailErr = "";
 $_SESSION['emailErr'] = $emailErr;
 

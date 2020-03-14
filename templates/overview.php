@@ -1,13 +1,22 @@
 <?php
+
+use App\Model\Classes\Details;
+
 require_once ('../src/controller/reset_controller.php');
 require_once('../src/controller/email_input_controller.php');
 require_once("../src/controller/type_controller.php");
 require_once("../src/controller/page_controller.php");
 require_once("../src/controller/category_controller.php");
-require_once('../src/model/classes/Pokemons.php');
 
 
-//var_dump($_SESSION['emailErr']);
+/**
+ * @var string $disablePreviousPage
+ * @var integer $currentPage
+ * @var array $types
+ * @var array $pokemons
+ * @var integer $count
+ */
+
 ?>
 
     <!doctype html>
@@ -81,7 +90,7 @@ require_once('../src/model/classes/Pokemons.php');
 
             <form action="#" method="POST">
                 <div class="form-row pt-3 pb-2 border border-white d-flex justify-content-space-between mx-auto">
-                    <div class="col-3 px-3">
+                    <div class="col-3 pl-2 pl-sm-3">
                         <select id="type" name="type" class="form-control bg-info text-white">
                             <?php
                             foreach ($types as $type) {
@@ -108,18 +117,16 @@ require_once('../src/model/classes/Pokemons.php');
                         <input type="number" name="limit" class="form-control bg-info text-white" value = "<?php echo (isset($_SESSION['limit']))?$_SESSION['limit']:18;?>" min = "3" max ="30"  step ="3" placeholder="Amount of Pokemons/page">
                         <small class="form-text text-muted text-center">Amount of Pokemons/page</small>
                     </div>
-                    <div class="col-3 px-3">
+                    <div class="col-3">
                         <button type="submit" class="btn btn-info btn-block">Submit</button>
                         <small class="form-text text-muted text-center">Confirm your choices</small>
                     </div>
-                    <div class="col-3 px-3">
+                    <div class="col-3 pr-2 pr-sm-3">
                         <a href="?reset" id="resetbutton" class="btn btn-info btn-block">Reset</a>
                         <small class="form-text text-muted text-center">Back to start values</small>
                     </div>
                 </div>
             </form>
-
-
 
             <nav aria-label="Page navigation example" class= "mt-4 mb-2 d-flex justify-content-center bg-secondary">
                 <ul class="pagination">
@@ -151,10 +158,10 @@ require_once('../src/model/classes/Pokemons.php');
                         <div class="card mb-4">
                             <img class ="mx-auto d-block" src="<?= $pokemon_sprite ?>" class="mb-2 px-2" width="125px" alt="pokemon">
                             <div class="card-body">
-                                <h5 class ="card-text"> <?= ucfirst($pokemon->name);?>
+                                <h5 class ="card-text"> <?= ucfirst($pokemonName);?>
                                     <i class=" ml-2 fa fa-heart-o text-danger "></i>
                                 </h5>
-                                <a href="../templates/detail.php?<?php echo $pokemon->name;?>" id="detail_button" class="btn btn-primary">More about <?= ucfirst($pokemon->name);?>?</a>
+                                <a href="../templates/detail.php?<?php echo $pokemonName;?>" id="detail_button" class="btn btn-primary">More about <?= ucfirst($pokemonName);?>?</a>
                             </div>
                         </div>
                     </div>

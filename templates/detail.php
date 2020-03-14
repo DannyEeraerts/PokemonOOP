@@ -1,5 +1,15 @@
 <?php
 require_once("../src/controller/detail_controller.php");
+/**
+ * @var integer $id
+ * @var integer $height
+ * @var integer $weight
+ * @var array $types
+ * @var array $abilities
+ * @var string $imageFront
+ * @var string $imageBack
+ */
+
 ?>
 <!doctype html>
 <html lang="en">
