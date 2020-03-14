@@ -1,21 +1,15 @@
 <?php
 
 //require_once('../src/model/classes/type.php');
-require_once('../src/model/classes/Types.php');
+require_once('../src/model/classes/Pokemons.php');
 //$url = "https://pokeapi.co/api/v2/type/";
 //$pokemon_types = new Type($url);
 //$types = $pokemon_types->getPokemonTypes();
 
-$pokemon_types = new Types();
-$types = $pokemon_types->getTypes();
 
+
+
+$AllTypes = new AllTypes();
+$types =$AllTypes->getAllPokemonsTypes();
 $count = count($types);
 
-/*foreach ($types as $type) {
-    if (--$count <= 1) {
-        break;
-    }
-    */?><!--
-    <option value=<?php /*echo $type->name; */?>><?php /*echo $type->name; */?></option>
---><?php
-/*}*/

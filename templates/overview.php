@@ -3,6 +3,8 @@ require_once('../src/controller/email_input_controller.php');
 require_once("../src/controller/type_controller.php");
 require_once("../src/controller/page_controller.php");
 require_once("../src/controller/category_controller.php");
+require_once('../src/model/classes/Pokemons.php');
+
 
 //var_dump($_SESSION['emailErr']);
 ?>
@@ -74,37 +76,50 @@ require_once("../src/controller/category_controller.php");
                 }
                 ?>
             </section>
-            <form action="#" method="POST">
-                <div class="form-row py-3  border border-white d-flex justify-content-space-between mx-auto">
-                    <div class="col-4 px-3">
-                        <select id="type" name="type" class="form-control bg-info text-white">
-                            <?php
-                            foreach ($types as $type) {
-                                if (--$count <= 1) {
-                                    break;
+
+                <form action="#" method="POST">
+                    <div class="form-row pt-3 pb-2 border border-white d-flex justify-content-space-between mx-auto">
+                        <div class="col-3 px-3">
+                            <select id="type" name="type" class="form-control bg-info text-white">
+                                <?php
+                                foreach ($types as $type) {
+                                    $test = $type->name;
+                                    if (--$count <= 1) {
+                                        break;
+                                    }
+                                    ?>
+                                    <option value=<?php echo $type->name;
+                                            if (isset($_SESSION['type'])){
+                                        if ($test === $_SESSION['type']) {
+                                            echo " selected";
+                                        }
+                                    }?>
+                                           >
+                                        <?php echo $type->name; ?>
+                                    </option>
+                                    <?php
                                 }
                                 ?>
-                                <option value=<?php echo $type->name; ?>><?php echo $type->name; ?></option>
-                                <?php
-                            }
-                            // note: how to put this on top?
-                            //require ("../scr/controller/type_controller.php");?>
-                        </select>
-                        <small class="form-text text-muted text-center">Choose type</small>
-                    </div>
-                    <div class="col-4 px-3">
-                        <input type="number" name="limit" class="form-control bg-info text-white" value = "<?php echo (isset($_SESSION['limit']))?$_SESSION['limit']:18;?>" min = "3" max ="30"  step ="3" placeholder="Amount of Pokemons/page">
-                        <small class="form-text text-muted text-center">Amount of Pokemons/page</small>
-                    </div>
-                    <div class="col-4 px-3">
-                        <button type="submit" class="btn btn-info btn-block">Submit</button>
-                        <small class="form-text text-muted text-center">Confirm your choice</small>
-                    </div>
+                            </select>
+                            <small class="form-text text-muted text-center">Choose type</small>
+                        </div>
+                        <div class="col-3">
+                            <input type="number" name="limit" class="form-control bg-info text-white" value = "<?php echo (isset($_SESSION['limit']))?$_SESSION['limit']:18;?>" min = "3" max ="30"  step ="3" placeholder="Amount of Pokemons/page">
+                            <small class="form-text text-muted text-center">Amount of Pokemons/page</small>
+                        </div>
+                        <div class="col-3 px-3">
+                            <button type="submit" class="btn btn-info btn-block">Submit</button>
+                            <small class="form-text text-muted text-center">Confirm your choice</small>
+                        </div>
+                        <div class="col-3 px-3">
+                            <button class="btn btn-info btn-block">Reset</button>
+                            <small class="form-text text-muted text-center">Back to start values</small>
+                        </div>
+                </form>
 
-                </div>
-            </form>
 
-            <nav aria-label="Page navigation example" class= "mt-3 d-flex justify-content-center bg-secondary">
+
+            <nav aria-label="Page navigation example" class= "mt-4 mb-2 d-flex justify-content-center bg-secondary">
                 <ul class="pagination">
                     <li class="page-item <?php echo $disablePreviousPage?>">
                         <a class="page-link" href="index.php?<?php echo $currentPage-1;?>">Previous Page</a>
@@ -123,12 +138,13 @@ require_once("../src/controller/category_controller.php");
 
             <div class="row">
                 <?php
-
                 foreach ($pokemons as $pokemon) {
 
-                    $pokemon_details = $pokemons_array->get_pokemon_details($pokemon->name);
-                    $pokemon_sprite = $pokemon_details->sprites->front_default;
-                    ?>
+                    $pokemonName = $pokemon->name;
+                    $pokemonDetails = new Details();
+                    $detail = $pokemonDetails->getPokemonDetails($pokemonName);
+                    $pokemon_sprite = $detail->sprites->front_default
+                ?>
                     <div class="col-6 col-md-4">
                         <div class="card mb-4">
                             <img class ="mx-auto d-block" src="<?= $pokemon_sprite ?>" class="mb-2 px-2" width="125px" alt="pokemon">
@@ -145,7 +161,7 @@ require_once("../src/controller/category_controller.php");
 
             </div>
 
-            <nav aria-label="Page navigation example" class= "mt-3 d-flex justify-content-center">
+            <nav aria-label="Page navigation example" class= "d-flex justify-content-center">
                 <ul class="pagination">
                     <li class="page-item <?php echo $disablePreviousPage?>">
                         <a class="page-link" href="index.php?<?php echo $currentPage-1;?>">Previous Page</a>
@@ -162,7 +178,7 @@ require_once("../src/controller/category_controller.php");
                 </ul>
             </nav>
 
-        <footer class="container fixed-lg-bottom mx-auto row d-flex align-items-center py-3 mt-3 border border-white">
+        <footer class="container fixed-lg-bottom mx-auto row d-flex align-items-center py-3 mt-2 border border-white">
 
             <!-- Grid column -->
             <div class="col-md-6 col-lg-5 text-center text-md-left">

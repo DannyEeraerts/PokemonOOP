@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require_once('../../../vendor/autoload.php');
+require_once('../vendor/autoload.php');
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
@@ -53,10 +53,10 @@ class AllTypes extends Pokemons{
         }
     }
 
-    public function getAllPokemonsOfSpecificTypes($name,$offset,$limit):array
+    public function getAllPokemonsOfSpecificTypes(string $name):array
     {
         try {
-            $response = $this->guzzle->get("/api/v2/type/" . $name. "?offset=" .$offset . "&limit=" . $limit);
+            $response = $this->guzzle->get("/api/v2/type/" . $name);
             $body = (string)$response->getBody();
             $json = json_decode($body);
             return $json->pokemon;
@@ -70,7 +70,7 @@ class AllTypes extends Pokemons{
 }
 
 class Details extends Pokemons{
-    public function getPokemonDetails($name): object
+    public function getPokemonDetails(string $name): object
     {
         try {
             $response = $this->guzzle->get( "/api/v2/pokemon/" .$name );
@@ -82,10 +82,11 @@ class Details extends Pokemons{
             $_SESSION['error_message'] = $e->getMessage();
         }
     }
+
 }
 
 
-$AllPokemons = new AllPokemons();
+/*$AllPokemons = new AllPokemons();
 $PokemonPage = $AllPokemons->getAllPokemonsDividedInPages(0,20);
 var_dump($PokemonPage);
 var_dump($PokemonPage[0]->name);
@@ -116,5 +117,5 @@ var_dump($detail->height);
 var_dump($detail->types);
 var_dump($detail->abilities);
 var_dump($detail->sprites->front_default);
-var_dump($detail->sprites->back_default);
+var_dump($detail->sprites->back_default);*/
 

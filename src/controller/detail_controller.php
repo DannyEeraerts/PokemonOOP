@@ -1,20 +1,21 @@
 <?php
 
-require_once('../src/model/classes/detail.php');
+require_once('../src/model/classes/Pokemons.php');
 
 
-$url = "https://pokeapi.co/api/v2/pokemon/";
+//$url = "https://pokeapi.co/api/v2/pokemon/";
 
 $name =$_SERVER['QUERY_STRING'];
-$pokemonDetail = new Detail($url,$name);
-$id = $pokemonDetail->getPokemonId();
-$name = $pokemonDetail->getPokemonName();
-$height = $pokemonDetail->getPokemonHeight();
-$weight = $pokemonDetail->getPokemonWeight();
-$types =  (array)$pokemonDetail->getPokemonType();
-$abilities = (array)$pokemonDetail->getPokemonAbilities();
-$imageFront= $pokemonDetail->getPokemonImageFront();
-$imageBack = $pokemonDetail->getPokemonImageBack();
+$pokemonDetail = new Details();
+$detail = $pokemonDetail->getPokemonDetails($name);
+$id = $detail->id;
+$name = $detail->name;
+$height = $detail->height;
+$weight = $detail->weight;
+$types =  (array)$detail->types;
+$abilities = (array)$detail->abilities;
+$imageFront= $detail->sprites->front_default;
+$imageBack = $detail->sprites->back_default;
 $tempArray = [];
 $tempArray2 = [];
 ?>
