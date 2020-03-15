@@ -1,7 +1,5 @@
 <?php
 
-//namespace App\Controller;
-
 $emailErr = "";
 $_SESSION['emailErr'] = $emailErr;
 
@@ -19,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($_SESSION['emailErr'] === "") {
         $_SESSION['email']= $_POST['email'];
-        header("Location: ../src/controller/mail_controller.php");
+        header("Location: ../src/Controller/mail_controller.php");
     }
 }
 

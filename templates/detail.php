@@ -1,5 +1,6 @@
 <?php
-require_once("../src/controller/detail_controller.php");
+session_start();
+require_once("../src/Controller/detail_controller.php");
 /**
  * @var integer $id
  * @var integer $height
@@ -53,10 +54,10 @@ require_once("../src/controller/detail_controller.php");
             <p> <span class="black">abilities:</span> <?php echo implode(", ", $tempArray2);?></p>
         </div>
         <div class="col text-center">
-            <a class="btn btn-info mt-5 text-center" href="../Public/index.php" role="button">Back to overview</a>
+            <a class="btn btn-info mt-5 text-center" href="../Public/index.php?<?php echo $_SESSION['currentPage'];?>" role="button">Back to overview</a>
         </div>
 
-    <footer id="footer_detail_page" class="container fixed-lg-bottom mx-auto row d-flex align-items-center py-3 mt-5 border border-white">
+    <footer id="footer_detail_page" class="container fixed-lg-bottom mx-auto d-flex align-items-center py-3 mt-5 border border-white">
 
         <!-- Grid column -->
         <div class="col-md-6 col-lg-5 text-center text-md-left">

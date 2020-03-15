@@ -2,11 +2,11 @@
 
 use App\Model\Classes\Details;
 
-require_once ('../src/controller/reset_controller.php');
-require_once('../src/controller/email_input_controller.php');
-require_once("../src/controller/type_controller.php");
-require_once("../src/controller/page_controller.php");
-require_once("../src/controller/category_controller.php");
+require_once('../src/Controller/reset_controller.php');
+require_once('../src/Controller/email_input_controller.php');
+require_once("../src/Controller/type_controller.php");
+require_once("../src/Controller/page_controller.php");
+require_once("../src/Controller/category_controller.php");
 
 
 /**
@@ -92,6 +92,7 @@ require_once("../src/controller/category_controller.php");
                 <div class="form-row pt-3 pb-2 border border-white d-flex justify-content-space-between mx-auto">
                     <div class="col-3 pl-2 pl-sm-3">
                         <select id="type" name="type" class="form-control bg-info text-white">
+                            <option value = "all" selected>all</option>
                             <?php
                             foreach ($types as $type) {
                                 $test = $type->name;
@@ -141,12 +142,16 @@ require_once("../src/controller/category_controller.php");
                     </li>
                         <?php
                     // note: how to put this on top?
-                    //require_once("../scr/controller/page_controller.php");?>
+                    //require_once("../scr/Controller/page_controller.php");?>
                 </ul>
             </nav>
 
             <div class="row">
                 <?php
+                /*if (isset($_POST['type'])||isset($_SESSION['type'])){
+                    echo $_POST['type'];
+                    echo $_SESSION['type'];
+                }*/
                 foreach ($pokemons as $pokemon) {
 
                     $pokemonName = $pokemon->name;
@@ -183,7 +188,7 @@ require_once("../src/controller/category_controller.php");
                     </li>
                     <?php
                     // note: how to put this on top?
-                    //require_once("../scr/controller/page_controller.php");?>
+                    //require_once("../scr/Controller/page_controller.php");?>
                 </ul>
             </nav>
 

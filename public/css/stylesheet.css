@@ -120,4 +120,9 @@ footer span{
   select.form-control:not([size]):not([multiple]){
     height: unset;
   }
+  [class*="row"] {
+    max-width: 95%;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
 }

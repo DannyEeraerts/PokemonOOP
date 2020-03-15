@@ -69,7 +69,6 @@ class AllTypes extends Pokemons{
         }
     }
 
-
 }
 
 class Details extends Pokemons{
@@ -85,6 +84,8 @@ class Details extends Pokemons{
             $_SESSION['error_message'] = $e->getMessage();
         }
     }
+
+
 
 
 
